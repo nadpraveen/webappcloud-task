@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return response()->json(['name' => 'Abigail', 'state' => 'CA']);
+
+    // return json_encode(['message'=> 'Test message']);
 });
