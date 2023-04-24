@@ -8,12 +8,14 @@ use Illuminate\Support\Str;
 
 class StaffController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $allStaff = Staff::get();
         return response()->json($allStaff);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $data['id'] = Str::uuid();
         $data['name'] = $request['name'];
@@ -21,6 +23,16 @@ class StaffController extends Controller
         $data['end_time'] = $request['endTime'];
 
         $staff = Staff::create($data);
+        return response()->json($staff);
+    }
+
+    public function show($id)
+    {
+        $staff = Staff::find($id);
+        $staffServices = [];
+        foreach ($staff->services as $services) {
+            array_push($staffServices, $services->pivot->created_at);
+        }
         return response()->json($staff);
     }
 }

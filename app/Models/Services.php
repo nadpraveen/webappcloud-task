@@ -15,4 +15,14 @@ class Services extends Model
 
     protected $fillable = [];
     protected $guarded = [];
+
+    public function staff()
+    {
+        return $this->belongsToMany(Staff::class, 'staff_services', 'service_id', 'staff_id');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Bookings::class, 'id', 'service_id');
+    }
 }
