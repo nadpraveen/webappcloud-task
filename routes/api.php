@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,14 @@ use App\Http\Controllers\StaffController;
 
 Route::controller(StaffController::class)->group(function () {
     Route::get('/staff', 'index');
-    Route::get('/show/{id}', 'show');
     Route::post('/staff', 'store');
-    // Route::post('/orders', 'store');
+
+});
+
+Route::controller(ServicesController::class)->group(function () {
+    Route::get('/service', 'index');
+    Route::post('/service', 'store');
+
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
